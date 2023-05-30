@@ -1,8 +1,8 @@
 ﻿using Entities.Models;
 using Microsoft.EntityFrameworkCore;
-using WebApi.Repositories.Config;
+using Repositories.EFCore.Config;
 
-namespace WebApi.Repositories
+namespace Repositories.EFCore
 {
     public class RepositoryContext : DbContext
     {
