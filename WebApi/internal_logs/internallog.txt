@@ -16,3 +16,6 @@
 2023-06-01 11:06:12.0819 Info Message Template Auto Format enabled
 2023-06-01 11:06:12.1491 Info Registered target NLog.Targets.FileTarget(Name=logfile)
 2023-06-01 11:06:12.1754 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Projects\StoreApp\WebApi\nlog.config
+2023-06-01 11:18:48.2194 Info Message Template Auto Format enabled
+2023-06-01 11:18:48.4124 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-06-01 11:18:48.5064 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Projects\StoreApp\WebApi\nlog.config
