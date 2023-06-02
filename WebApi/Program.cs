@@ -22,8 +22,6 @@ builder.Services.AddControllers().AddApplicationPart(typeof(Presentation.Assembl
 
 builder.Services.AddControllers();
 
-builder.Services.AddScoped<ValidationFilterAttribute>();
-
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.SuppressModelStateInvalidFilter = true;
@@ -38,6 +36,7 @@ builder.Services.ConfigureRepositoryManager();
 builder.Services.ConfigureServiceManager();
 builder.Services.ConfigureLoggerService();
 builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.ConfigureActionFilters();
 
 var app = builder.Build();
 
