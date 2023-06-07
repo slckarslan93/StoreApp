@@ -1,8 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using NLog;
-using Presentation.ActionFilters;
-using Repositories.EFCore;
 using Services.Contracts;
 using WebApi.Extensions;
 
