@@ -14,11 +14,11 @@ builder.Services.AddControllers(config =>
 {
     config.RespectBrowserAcceptHeader = true;
     config.ReturnHttpNotAcceptable = true;
-}).AddCustomCsvFormatter().AddXmlDataContractSerializerFormatters();
-
-builder.Services.AddControllers().AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly).AddNewtonsoftJson();
-
-builder.Services.AddControllers();
+})
+.AddXmlDataContractSerializerFormatters()
+.AddCustomCsvFormatter()
+.AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly);
+//.AddNewtonsoftJson();
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
