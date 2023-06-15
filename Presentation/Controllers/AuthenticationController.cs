@@ -10,59 +10,63 @@ using System.Threading.Tasks;
 
 namespace Presentation.Controllers
 {
-    [ApiController]
-    [Route("api/authentication")]
-    public class AuthenticationController : ControllerBase
+    namespace Presentation.Controllers
     {
-        private readonly IServiceManager _service;
-
-        public AuthenticationController(IServiceManager service)
+        [ApiController]
+        [Route("api/authentication")]
+        [ApiExplorerSettings(GroupName = "v1")]
+        public class AuthenticationController : ControllerBase
         {
-            _service = service;
-        }
+            private readonly IServiceManager _service;
 
-        [HttpPost]
-        [ServiceFilter(typeof(ValidationFilterAttribute))]
-        public async Task<IActionResult> RegisterUser([FromBody] UserForRegistrationDto userForRegistrationDto)
-        {
-            var result = await _service
-                .AuthenticationService
-                .RegisterUser(userForRegistrationDto);
-
-            if (!result.Succeeded)
+            public AuthenticationController(IServiceManager service)
             {
-                foreach (var error in result.Errors)
-                {
-                    ModelState.TryAddModelError(error.Code, error.Description);
-                }
-                return BadRequest(ModelState);
+                _service = service;
             }
 
-            return StatusCode(201);
-        }
+            [HttpPost]
+            [ServiceFilter(typeof(ValidationFilterAttribute))]
+            public async Task<IActionResult> RegisterUser([FromBody] UserForRegistrationDto userForRegistrationDto)
+            {
+                var result = await _service
+                    .AuthenticationService
+                    .RegisterUser(userForRegistrationDto);
 
-        [HttpPost("login")]
-        [ServiceFilter(typeof(ValidationFilterAttribute))]
-        public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto user)
-        {
-            if (!await _service.AuthenticationService.ValidateUser(user))
-                return Unauthorized(); // 401
+                if (!result.Succeeded)
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.TryAddModelError(error.Code, error.Description);
+                    }
+                    return BadRequest(ModelState);
+                }
 
-            var tokenDto = await _service
-                .AuthenticationService
-                .CreateToken(populateExp: true);
+                return StatusCode(201);
+            }
 
-            return Ok(tokenDto);
-        }
+            [HttpPost("login")]
+            [ServiceFilter(typeof(ValidationFilterAttribute))]
+            public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto user)
+            {
+                if (!await _service.AuthenticationService.ValidateUser(user))
+                    return Unauthorized(); // 401
 
-        [HttpPost("refresh")]
-        [ServiceFilter(typeof(ValidationFilterAttribute))]
-        public async Task<IActionResult> Refresh([FromBody] TokenDto tokenDto)
-        {
-            var tokenDtoToReturn = await _service
-                .AuthenticationService
-                .RefreshToken(tokenDto);
-            return Ok(tokenDtoToReturn);
+                var tokenDto = await _service
+                    .AuthenticationService
+                    .CreateToken(populateExp: true);
+
+                return Ok(tokenDto);
+            }
+
+            [HttpPost("refresh")]
+            [ServiceFilter(typeof(ValidationFilterAttribute))]
+            public async Task<IActionResult> Refresh([FromBody] TokenDto tokenDto)
+            {
+                var tokenDtoToReturn = await _service
+                    .AuthenticationService
+                    .RefreshToken(tokenDto);
+                return Ok(tokenDtoToReturn);
+            }
         }
     }
 }
