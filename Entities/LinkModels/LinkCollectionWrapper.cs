@@ -10,9 +10,9 @@ namespace Entities.LinkModels
         {
             Value = value;
         }
+
         public LinkCollectionWrapper()
         {
-
         }
     }
 }

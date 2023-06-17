@@ -1,22 +1,22 @@
-﻿using Entities.DataTransferObjects;
-using Microsoft.AspNetCore.Mvc.Formatters;
+﻿using AspNetCoreRateLimit;
+using Entities.DataTransferObjects;
+using Entities.Models;
+using Marvin.Cache.Headers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Presentation.ActionFilters;
+using Presentation.Controllers;
 using Repositories.Contracts;
 using Repositories.EFCore;
 using Services;
 using Services.Contracts;
-using Microsoft.AspNetCore.Mvc.Versioning;
-using Presentation.Controllers;
-using Marvin.Cache.Headers;
-using AspNetCoreRateLimit;
-using Entities.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Microsoft.OpenApi.Models;
 
 namespace WebApi.Extensions
 {

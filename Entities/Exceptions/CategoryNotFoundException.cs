@@ -6,7 +6,6 @@
         public CategoryNotFoundException(int id)
             : base($"Category with id : {id} could not found.")
         {
-
         }
     }
 }

@@ -10,5 +10,4 @@
             Entity = new Entity();
         }
     }
-
 }
